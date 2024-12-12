@@ -15,17 +15,19 @@ import retrofit2.http.Part
 import retrofit2.http.Query
 
 interface ApiService {
-    @POST("register")
+    @POST("/auths/register")
     suspend fun register(@Body registerRequest: RegisterRequest): RegisterResponse
 
-    @POST("login")
+    @POST("/auths/login")
     suspend fun login(@Body loginRequest: LoginRequest): LoginResponse
 
     @Multipart
-    @POST("predicts")
+    @POST("/predicts")
     fun uploadImage(
         @Query("plants") plant: String,
         @HeaderMap headers: Map<String, String>,
         @Part file: MultipartBody.Part
     ): Call<PredictionResponse>
+
+    // predict
 }

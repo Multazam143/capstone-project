@@ -2,10 +2,15 @@ package com.example.plantgard.ui.analysis
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.ImageDecoder
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.view.animation.AlphaAnimation
 import android.widget.ProgressBar
@@ -30,6 +35,9 @@ import okhttp3.RequestBody.Companion.asRequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
 
 class AnalysisActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAnalysisBinding
@@ -119,67 +127,94 @@ class AnalysisActivity : AppCompatActivity() {
         }
     }
 
+    private fun convertToJpeg(uri: Uri, context: Context): File? {
+        try {
+            val bitmap = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                val source = ImageDecoder.createSource(context.contentResolver, uri)
+                ImageDecoder.decodeBitmap(source)
+            } else {
+                MediaStore.Images.Media.getBitmap(context.contentResolver, uri)
+            }
+
+            val file = File(context.cacheDir, "converted_image.jpg")
+            val outputStream = FileOutputStream(file)
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
+            outputStream.close()
+
+            return file
+        } catch (e: IOException) {
+            e.printStackTrace()
+            return null
+        }
+    }
+
     private fun uploadImageToAPI(plantType: String, token: String) {
         val filePath = getFilePathFromUri(currentImageUri!!)
         if (filePath != null) {
-            val file = java.io.File(filePath)
-            val requestBody = file.asRequestBody("image/*".toMediaTypeOrNull())
-            val body = MultipartBody.Part.createFormData("image", file.name, requestBody)
+            val file = convertToJpeg(currentImageUri!!, this)
+            if (file != null) {
+                val requestBody = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
+                val body = MultipartBody.Part.createFormData("image", file.name, requestBody)
 
-            val headers = mapOf("Authorization" to "Bearer $token")
+                val headers = mapOf("Authorization" to "Bearer $token")
 
-            Log.d("UploadImage", "Headers: $headers")
-            Log.d("UploadImage", "File: ${file.name}, File Path: $filePath")
+                Log.d("UploadImage", "Headers: $headers")
+                Log.d("UploadImage", "File: ${file.name}, File Path: ${file.absolutePath}")
 
-            progressBar.visibility = ProgressBar.VISIBLE
+                progressBar.visibility = ProgressBar.VISIBLE
 
-            val call = ApiConfig.apiService.uploadImage(plantType, headers, body)
-            call.enqueue(object : Callback<PredictionResponse> {
-                override fun onResponse(call: Call<PredictionResponse>, response: Response<PredictionResponse>) {
-                    progressBar.visibility = ProgressBar.GONE
-                    Log.d("UploadImage", "Response code: ${response.code()}")
-                    Log.d("UploadImage", "Response message: ${response.message()}")
+                val call = ApiConfig.apiService.uploadImage(plantType, headers, body)
+                call.enqueue(object : Callback<PredictionResponse> {
+                    override fun onResponse(call: Call<PredictionResponse>, response: Response<PredictionResponse>) {
+                        progressBar.visibility = ProgressBar.GONE
+                        Log.d("UploadImage", "Response code: ${response.code()}")
+                        Log.d("UploadImage", "Response message: ${response.message()}")
 
-                    if (response.isSuccessful) {
-                        val predictionResponse = response.body()
-                        Log.d("UploadImage", "Prediction response: $predictionResponse")
+                        if (response.isSuccessful) {
+                            val predictionResponse = response.body()
+                            Log.d("UploadImage", "Prediction response: $predictionResponse")
 
-                        if (predictionResponse != null) {
-                            val intent = Intent(this@AnalysisActivity, ResultActivity::class.java)
-                            intent.putExtra("PLANT_TYPE", plantType)
-                            intent.putExtra("imageUri", currentImageUri.toString())  // Kirim URI gambar
+                            if (predictionResponse != null) {
+                                val intent = Intent(this@AnalysisActivity, ResultActivity::class.java)
+                                intent.putExtra("PLANT_TYPE", plantType)
+                                intent.putExtra("imageUri", currentImageUri.toString())  // Kirim URI gambar
 
-                            // Kirim data penyakit dari API
-                            val disease = predictionResponse.data.disease
-                            intent.putExtra("DISEASE_TYPE", disease.type)
-                            intent.putExtra("DISEASE_DESCRIPTION", disease.description)
-                            intent.putExtra("DISEASE_TREATMENT", disease.treatment)
-                            intent.putExtra("DISEASE_PREVENTION", disease.prevention)
+                                // Kirim data penyakit dari API
+                                val disease = predictionResponse.data.disease
+                                intent.putExtra("DISEASE_TYPE", disease.type)
+                                intent.putExtra("DISEASE_DESCRIPTION", disease.description)
+                                intent.putExtra("DISEASE_TREATMENT", disease.treatment)
+                                intent.putExtra("DISEASE_PREVENTION", disease.prevention)
 
-                            startActivity(intent)
+                                startActivity(intent)
+                            } else {
+                                Log.e("UploadImage", "Invalid data from API")
+                                showToast("Data tidak valid dari API")
+                            }
                         } else {
-                            Log.e("UploadImage", "Invalid data from API")
-                            showToast("Data tidak valid dari API")
+                            // Log error message if the response is not successful
+                            Log.e("UploadImage", "Failed to get data: ${response.errorBody()?.string()}")
+                            showToast("Gagal mengambil data:  ${response.message()}")
                         }
-                    } else {
-                        // Log error message if the response is not successful
-                        Log.e("UploadImage", "Failed to get data: ${response.errorBody()?.string()}")
-                        showToast("Gagal mengambil data:  ${response.message()}")
                     }
-                }
 
-                override fun onFailure(call: Call<PredictionResponse>, t: Throwable) {
-                    progressBar.visibility = ProgressBar.GONE
-                    // Log failure message in case of network issues
-                    Log.e("UploadImage", "Network error: ${t.message}", t)
-                    showToast("Kesalahan jaringan: ${t.message}")
-                }
-            })
+                    override fun onFailure(call: Call<PredictionResponse>, t: Throwable) {
+                        progressBar.visibility = ProgressBar.GONE
+                        // Log failure message in case of network issues
+                        Log.e("UploadImage", "Network error: ${t.message}", t)
+                        showToast("Kesalahan jaringan: ${t.message}")
+                    }
+                })
+            } else {
+                Log.e("UploadImage", "File conversion failed")
+                showToast("Konversi file gagal")
+            }
         } else {
             Log.e("UploadImage", "File path is null")
             showToast("File path is null")
         }
     }
+
 
     private fun getFilePathFromUri(uri: Uri): String? {
         val cursor = contentResolver.query(uri, null, null, null, null)
