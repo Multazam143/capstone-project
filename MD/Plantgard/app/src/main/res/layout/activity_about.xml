@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".ui.AboutActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:gravity="center_horizontal">
+
+        <!-- Logo Aplikasi -->
+        <ImageView
+            android:id="@+id/app_logo"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:src="@drawable/plantgard_logo" />
+
+        <!-- Deskripsi Aplikasi -->
+        <TextView
+            android:id="@+id/app_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/about"
+            android:textSize="16sp"
+            android:textAlignment="center"
+            android:lineSpacingExtra="4dp" />
+
+        <!-- Nama Tim -->
+        <TextView
+            android:id="@+id/team_title"
+            android:layout_width="266dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/team"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <!-- Daftar Nama Tim -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="8dp">
+
+            <TextView
+                android:id="@+id/team_member_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/team1"
+                android:textSize="16sp"
+                android:padding="4dp" />
+
+            <TextView
+                android:id="@+id/team_member_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/team2"
+                android:textSize="16sp"
+                android:padding="4dp" />
+
+            <TextView
+                android:id="@+id/team_member_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/team3"
+                android:textSize="16sp"
+                android:padding="4dp" />
+
+            <TextView
+                android:id="@+id/team_member_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/team4"
+                android:textSize="16sp"
+                android:padding="4dp" />
+
+            <TextView
+                android:id="@+id/team_member_5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/team5"
+                android:textSize="16sp"
+                android:padding="4dp" />
+
+            <TextView
+                android:id="@+id/team_member_6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/team6"
+                android:textSize="16sp"
+                android:padding="4dp" />
+
+            <TextView
+                android:id="@+id/team_member_7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/team7"
+                android:textSize="16sp"
+                android:padding="4dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- General App Strings -->
+    <string name="app_name">Plantgard</string>
+    <string name="about">Plantgard adalah aplikasi yang dirancang untuk membantu petani dalam mendeteksi penyakit pada tanaman Padi, Jagung, dan Cabai dengan teknologi Machine Learning. Dapatkan rekomendasi penanggulangan yang efektif dan mudah diterapkan.</string>
+    <string name="plantgard_logo">Plantgard Logo</string>
+
+    <!-- Diagnostics -->
+    <string name="diagnosa_penyakit_tanaman_cabai">Diagnosa Penyakit Tanaman Cabai</string>
+    <string name="diagnosa_penyakit_tanaman_jagung">Diagnosa Penyakit Tanaman Jagung</string>
+    <string name="diagnosa_penyakit_tanaman_padi">Diagnosa Penyakit Tanaman Padi</string>
+    <string name="hasil_pindai">Hasil Pindai</string>
+    <string name="saran_penanganan">Saran Penanganan</string>
+    <string name="gejala">Gejala</string>
+    <string name="pindai_tanaman_anda">Pindai Tanaman Anda</string>
+    <string name="pilih_sebuah_gambar">Pilih Sebuah Gambar</string>
+
+    <!-- Authentication -->
+    <string name="email">Email</string>
+    <string name="kata_sandi">Kata Sandi</string>
+    <string name="nama">Nama</string>
+    <string name="masukan_nama">Masukkan Nama</string>
+    <string name="register">DAFTAR</string>
+    <string name="buat_akun">Buat Akun</string>
+    <string name="belum_punya_akun_daftar">Belum Punya Akun? Daftar</string>
+    <string name="sudah_punya_akun_login">Sudah Punya Akun? Masuk</string>
+    <string name="Masuk">Masuk</string>
+    <string name="logout">Logout</string>
+    <string name="keluar">Keluar</string>
+
+    <!-- Notifications and Errors -->
+    <string name="fill_all_fields">Harap isi semua field!</string>
+    <string name="register_success">Pendaftaran berhasil!</string>
+    <string name="register_failed">Gagal mendaftar: %1$s</string>
+    <string name="error_bad_request">Permintaan tidak valid!</string>
+    <string name="error_server">Terjadi kesalahan di server!</string>
+    <string name="error_unknown">Terjadi kesalahan tidak dikenal!</string>
+
+    <!-- Features -->
+    <string name="galeri">Galeri</string>
+    <string name="camera">Kamera</string>
+    <string name="Unggah">Unggah</string>
+    <string name="mode_gelap">Mode Gelap</string>
+
+    <!-- Navigation -->
+    <string name="bottom_nav_menu">Bottom Navigation Menu</string>
+    <string name="selamat_datang_di">Selamat datang di</string>
+    <string name="plantgard">Plantgard</string>
+
+    <!-- Teams -->
+    <string name="team1">A808B4KX3621 - Rahma - Universitas Muhammadiyah Palopo</string>
+    <string name="team2">A278B4KY3151 - Multazam - Universitas Negeri Makassar</string>
+    <string name="team3">C183B4KY4080 - Satria Reiky Fidian - Universitas Amikom Yogyakarta</string>
+    <string name="team4">C547B4NY3098 - Muhammad Syamil Hamami - UIN Sunan Gunung Djati Bandung</string>
+    <string name="team5">M183B4KY3791 - Rezha Ikhwan Hidayat - Universitas Amikom Yogyakarta</string>
+    <string name="team6">M008B4KY1125 - Diestra Pradana Duta Ramadhan - Universitas Gadjah Mada</string>
+    <string name="team7">M676B4KX0450 - Amanda Amalia - Universitas Global Jakarta</string>
+    <string name="team">Capstone Team C242-PS446 Bangkit Academy Batch 2 2024</string>
+</resources>
