@@ -39,13 +39,13 @@
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="4dp"
+                android:backgroundTint="@color/md_theme_primaryContainer"
                 android:layout_marginBottom="25dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal"
-                    android:background="@color/green"
                     android:padding="20dp">
 
                     <ImageView
@@ -61,7 +61,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:text="@string/diagnosa_penyakit_tanaman_padi"
-                        android:textColor="@color/black"
+                        android:textColor="@color/md_theme_onPrimaryContainer"
                         android:textSize="16sp"
                         android:layout_gravity="center_vertical"
                         android:layout_weight="1" />
@@ -75,13 +75,13 @@
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="4dp"
+                android:backgroundTint="@color/md_theme_primaryContainer"
                 android:layout_marginBottom="25dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:background="@color/yellow"
                     android:padding="20dp">
 
                     <ImageView
@@ -97,7 +97,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:text="@string/diagnosa_penyakit_tanaman_jagung"
-                        android:textColor="@color/black"
+                        android:textColor="@color/md_theme_onPrimaryContainer"
                         android:textSize="16sp"
                         android:layout_gravity="center_vertical"
                         android:layout_weight="1" />
@@ -111,13 +111,13 @@
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="4dp"
+                android:backgroundTint="@color/md_theme_primaryContainer"
                 android:layout_marginBottom="16dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:background="@color/red"
                     android:padding="25dp">
 
                     <ImageView
@@ -133,7 +133,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:text="@string/diagnosa_penyakit_tanaman_cabai"
-                        android:textColor="@color/black"
+                        android:textColor="@color/md_theme_onPrimaryContainer"
                         android:textSize="16sp"
                         android:layout_gravity="center_vertical"
                         android:layout_weight="1" />

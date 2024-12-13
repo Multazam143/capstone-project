@@ -28,7 +28,7 @@
         android:padding="12dp"
         android:src="@drawable/ic_logout_24"
         android:text="@string/keluar"
-        android:textColor="@color/black"
+        android:textColor="@color/md_theme_onPrimaryContainer"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

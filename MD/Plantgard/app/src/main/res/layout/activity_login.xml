@@ -6,7 +6,8 @@
     android:background="#FFFFFF"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.login.LoginActivity">
+    tools:context=".ui.login.LoginActivity"
+    android:backgroundTint="@color/md_theme_background">
 
 
     <ImageView
@@ -29,7 +30,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/Masuk"
         android:alpha="0"
-        android:textColor="@color/black"
+        android:textColor="@color/md_theme_onBackground"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -45,7 +46,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="24dp"
         android:text="@string/email"
-        android:textColor="@color/black"
+        android:textColor="@color/md_theme_onBackground"
         android:alpha="0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginTitleTextView"
@@ -82,7 +83,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:text="@string/kata_sandi"
-        android:textColor="@color/black"
+        android:textColor="@color/md_theme_onBackground"
         android:alpha="0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailEditTextLayout"
@@ -120,10 +121,10 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
-        android:backgroundTint="@color/green"
+        android:backgroundTint="@color/md_theme_secondary"
         android:text="@string/Masuk"
         android:textAllCaps="true"
-        android:textColor="@android:color/white"
+        android:textColor="@color/md_theme_onSecondary"
         android:alpha="0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -138,7 +139,7 @@
         android:layout_marginTop="16dp"
         android:background="?android:attr/selectableItemBackground"
         android:text="@string/belum_punya_akun_daftar"
-        android:textColor="@color/green"
+        android:textColor="@color/md_theme_onBackground"
         android:textSize="14sp"
         android:alpha="0"
         app:layout_constraintEnd_toEndOf="parent"
